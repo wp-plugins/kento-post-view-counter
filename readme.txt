@@ -14,7 +14,8 @@ Post View Counter by City or Country or by Date.
 
 Real post view counter for wordpress post, page or custome post type
 
-Live Preview: http://kentothemes.com/demo/kento-pvc/hello-world/
+Plugin details and support:<br />
+http://kentothemes.com/items/plugins/kento-post-view-counter/
 
 
 
