@@ -1,12 +1,37 @@
-<?php
+<?php	
+
+	if(empty($_POST['kentopvc_hidden']))
+		{
+			$kento_pvc_hide = get_option( 'kento_pvc_hide' );
+			$kento_pvc_posttype = get_option( 'kento_pvc_posttype' );
+			$kento_pvc_numbers_lang = get_option( 'kento_pvc_numbers_lang' );
+			$kento_pvc_today_text = get_option( 'kento_pvc_today_text' );			
+			$kento_pvc_total_text = get_option( 'kento_pvc_total_text' );
+		}
+	else
+		{
+					
+				
 		if($_POST['kentopvc_hidden'] == 'Y') {
 			//Form data sent
-			
-
-			$kento_pvc_hide = $_POST['kento_pvc_hide'];
+			if(empty($_POST['kento_pvc_hide']))
+				{
+				$kento_pvc_hide ="";
+				}
+			else
+				{
+					$kento_pvc_hide = $_POST['kento_pvc_hide'];
+				}
 			update_option('kento_pvc_hide', $kento_pvc_hide);
-		
-			$kento_pvc_posttype = $_POST['kento_pvc_posttype'];
+
+			if(empty($_POST['kento_pvc_posttype']))
+				{
+				$kento_pvc_posttype ="";
+				}
+			else
+				{
+					$kento_pvc_posttype = $_POST['kento_pvc_posttype'];
+				}
 			update_option('kento_pvc_posttype', $kento_pvc_posttype);
 			
 			$kento_pvc_numbers_lang = $_POST['kento_pvc_numbers_lang'];
@@ -23,15 +48,8 @@
             </div>
 
 			<?php
-		} else {
-			//Normal page display
-			$kento_pvc_hide = get_option( 'kento_pvc_hide' );
-			$kento_pvc_posttype = get_option( 'kento_pvc_posttype' );
-			$kento_pvc_numbers_lang = get_option( 'kento_pvc_numbers_lang' );
-			$kento_pvc_today_text = get_option( 'kento_pvc_today_text' );			
-			$kento_pvc_total_text = get_option( 'kento_pvc_total_text' );
-		}
-
+		} 
+	}
 ?>
 
 

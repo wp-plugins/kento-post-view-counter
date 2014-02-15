@@ -110,6 +110,7 @@ or for Arabic/Persian: ۰,۱,۲,۳,۴,۵,۶,۷,۸,۹
 == Changelog ==
 
 = 1.9 =
+* Fix WP_DEBUG Error.
 * Added Top 10 City on Stats Page.
 * Custom text for total and today view count via setting page.
 * Removed custom text via shortcodes.

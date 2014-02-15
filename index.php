@@ -9,34 +9,40 @@ Author URI: http://kentothemes.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
-
+define('KENTO_PVC_PLUGIN_PATH', WP_PLUGIN_URL . '/' . plugin_basename( dirname(__FILE__) ) . '/' );
 function kento_pvc_latest_jquery() {
 	wp_enqueue_script('jquery');
+	wp_enqueue_script('jquery-ui-datepicker');
+	wp_enqueue_script('kento_pvc_js', plugins_url( '/js/kento-pvc.js' , __FILE__ ) , array( 'jquery' ));
+	wp_localize_script( 'kento_pvc_js', 'kento_pvc_ajax', array( 'kento_pvc_ajaxurl' => admin_url( 'admin-ajax.php')));
+	wp_enqueue_style('kento-like-post-style', KENTO_PVC_PLUGIN_PATH.'css/style.css');
+	wp_enqueue_style('kento-like-post-date-style', KENTO_PVC_PLUGIN_PATH.'css/jquery-ui.css');
+	
 }
 add_action('init', 'kento_pvc_latest_jquery');
 
-wp_enqueue_script('jquery-ui-datepicker');
+
 //Include Javascript library
-wp_enqueue_script('kento_pvc_js', plugins_url( '/js/kento-pvc.js' , __FILE__ ) , array( 'jquery' ));
+
 // including ajax script in the plugin Myajax.ajaxurl
-wp_localize_script( 'kento_pvc_js', 'kento_pvc_ajax', array( 'kento_pvc_ajaxurl' => admin_url( 'admin-ajax.php')));
-
-define('KENTO_PVC_PLUGIN_PATH', WP_PLUGIN_URL . '/' . plugin_basename( dirname(__FILE__) ) . '/' );
-
-
-wp_enqueue_style('kento-like-post-style', KENTO_PVC_PLUGIN_PATH.'css/style.css');
-wp_enqueue_style('kento-like-post-date-style', KENTO_PVC_PLUGIN_PATH.'css/jquery-ui.css');
 
 
 
 
-register_activation_hook(__FILE__, kento_pvc_install());
-register_uninstall_hook(__FILE__, kento_pvc_drop());
+
+
+
+
+
+
+
+register_activation_hook(__FILE__, 'kento_pvc_install');
+register_uninstall_hook(__FILE__, 'kento_pvc_drop');
 
 
 function kento_pvc_install()
 	{
-	global $wpdb;
+		global $wpdb;
         $sql = "CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . "kento_pvc"
                  ."( UNIQUE KEY id (id),
 					id int(100) NOT NULL AUTO_INCREMENT,
@@ -59,14 +65,23 @@ function kento_pvc_install()
 					ip  int(10) NOT NULL,
 					city varchar(100) NOT NULL,
 					country varchar(100) NOT NULL,
-					datetime datetime NOT NULL)";
+					datetime datetime NOT NULL,
+					referer VARCHAR( 100 ) NOT NULL)";
 		$wpdb->query($sql3);
-		
-		
 
-		$updte_tbl = "ALTER TABLE ".$wpdb->prefix."kento_pvc_city ADD referer VARCHAR( 100 ) NOT NULL AFTER datetime";		
-		$wpdb->query($updte_tbl);
 		}
+
+	function upgrade_version_1_2(){
+		global $wpdb;
+		$sql = "ALTER TABLE ". $wpdb->prefix . "pvc_daily CHANGE `postnum` `postnum` VARCHAR( 255 ) NOT NULL";
+		$wpdb->query($sql);
+		
+		
+	}
+
+
+
+
 
 
 function kento_pvc_drop() {
@@ -215,7 +230,11 @@ add_action('wp_ajax_nopriv_kento_pvc_by_city', 'kento_pvc_by_city');
 
 function kento_pvc_top_geo()
 	{	
-		$geo = $_POST['kento_pvc_geo'];
+	
+		if(isset($_POST['kento_pvc_geo']))
+			{
+			$geo = $_POST['kento_pvc_geo'];
+			}
 		if(empty($geo))
 			{
 				$geo ="country";
@@ -225,7 +244,7 @@ function kento_pvc_top_geo()
 		$result = $wpdb->get_results("SELECT $geo FROM $table GROUP BY $geo ORDER BY COUNT($geo) DESC LIMIT 10", ARRAY_A);
 		$total_rows = $wpdb->num_rows;
 
-
+		$top_geo ="";
 		$top_geo.= "<table class='pvc-top-referer widefat'>";
 		$top_geo.= "<thead><tr>";
 		$top_geo.= "<th scope='col' class='manage-column column-name' ><strong>Rank</strong></th>";
@@ -310,6 +329,7 @@ if($kento_pvc_posttype==NULL)
 	}
 else
 	{
+		$type = "";
 	foreach ( $kento_pvc_posttype as  $post_type => $post_type_value )
 		{
 	
@@ -326,14 +346,22 @@ if(is_singular(explode(',',$type))){
 	$table = $wpdb->prefix . "kento_pvc";
 	
 	$result = $wpdb->get_results("SELECT count FROM $table WHERE postid = $post_id", ARRAY_A);
-	$view_count = $result[0]['count'];
+	if(empty($result[0]['count']))
+		{
+			$view_count = 0;
+		}
+	else
+		{
+		$view_count = $result[0]['count'];
+		}
+	
+	
 	$already_insert = $wpdb->num_rows;
 	
 	
 	if($already_insert > 0 )
 		{
 			$wpdb->query("UPDATE $table SET count = count+1 WHERE postid = $post_id");
-
 		}
 	else
 		{
@@ -342,7 +370,6 @@ if(is_singular(explode(',',$type))){
 								VALUES	( %d, %d, %d )",
 								array	( '', $post_id,1)
 										));
-
 		}
 
 	global $wpdb;
@@ -415,11 +442,16 @@ global $wpdb;
 $table = $wpdb->prefix . "kento_pvc";
 $result = $wpdb->get_results("SELECT count FROM $table WHERE postid = $post_id", ARRAY_A);
 
-$view_count = $result[0]['count'];
-if($view_count==0)
+if(empty($result[0]['count']))
 	{
-		$view_count = 1;
+	$view_count=0;
 	}
+else
+	{
+	$view_count = $result[0]['count'];
+	
+	}
+
 
 
 $kento_pvc_today_text = get_option( 'kento_pvc_today_text' );
@@ -492,13 +524,16 @@ function kento_pvc_today_total()
 	$table = $wpdb->prefix . "kento_pvc_info";
 	$post_id = get_the_id();
 	$result = $wpdb->get_results("SELECT * FROM $table WHERE postid = $post_id AND date=CURDATE()", ARRAY_A);
-	$view_count = $result[0]['count'];
 	
-if($view_count==0)
-	{
-		$view_count = 1;
-	}
-
+	if(empty($result[0]['count']))
+		{
+			$view_count = 0;
+		}
+	else 
+		{
+			$view_count = $result[0]['count'];
+		}
+	
 	return $view_count;
 	
 	}
@@ -538,12 +573,18 @@ function kpvc_display_single($atts,  $content = null ) {
 			global $wpdb;
 			$table = $wpdb->prefix . "kento_pvc";
 			$result = $wpdb->get_results("SELECT count FROM $table WHERE postid = $post_id", ARRAY_A);
+	
 
-			$view_count = $result[0]['count'];
-			if($view_count==0)
-			{
-			$view_count = 1;
-			}
+			if(empty($result[0]['count']))
+				{
+				$view_count=0;
+				}
+			else
+				{
+				$view_count = $result[0]['count'];
+				}
+			
+
 			
 			
 			$kento_pvc_today_text = get_option( 'kento_pvc_today_text' );
@@ -568,7 +609,7 @@ function kpvc_display_single($atts,  $content = null ) {
 				$kento_pvc_total_text = "Total Views ";	
 				}
 
-
+			$kpvc = "";
 			$kpvc.= "<div id='kento-pvc-single'>";
 			
 			if($atts['total']=="yes")
@@ -603,10 +644,12 @@ function kento_pvc_top_referer()
 	{	
 		
 		global $wpdb;
-		$table = $wpdb->prefix . "kento_pvc_city";
+		$table = $wpdb->prefix."kento_pvc_city";
 		
-		
-		$date = $_POST['kpvc_date_referer'];
+		if(isset($_POST['kpvc_date_referer']))
+			{
+			$date = $_POST['kpvc_date_referer'];
+			}
 		if(isset($date))
 			{
 				$result = $wpdb->get_results("SELECT referer FROM $table GROUP BY referer ORDER BY COUNT(referer) DESC LIMIT 10", ARRAY_A);
@@ -618,7 +661,7 @@ function kento_pvc_top_referer()
 				$total_rows = $wpdb->num_rows;
 			
 			}
-
+		$referer = "";
 		$referer.= "<table class='pvc-top-referer widefat'>";
 		$referer.= "<thead><tr>";
 		$referer.= "<th scope='col' class='manage-column column-name' ><strong>Rank</strong></th>";
@@ -717,15 +760,17 @@ function kpvc_display_loop($atts) {
 			global $wpdb;
 			$table = $wpdb->prefix . "kento_pvc";
 			$result = $wpdb->get_results("SELECT count FROM $table WHERE postid = $post_id", ARRAY_A);
+			
+			if(empty($result[0]['count']))
+				{
+				$view_count = 0;
+				}
+			else
+				{
+				$view_count = $result[0]['count'];
+				}
 
-			$view_count = $result[0]['count'];
-			if($view_count==0)
-			{
-			$view_count = 1;
-			}
-
-
-
+			$kpvc = "";
 			$kpvc.= "<div id='kento-pvc-loop'>";
 			if($atts['total']=="yes")
 				{
@@ -759,7 +804,7 @@ function kento_pvc_convert_lang($input) {
 	
 	$kento_pvc_numbers_lang = get_option( 'kento_pvc_numbers_lang' );
 	$bn_digits=explode(",",$kento_pvc_numbers_lang);
-return $output = str_replace(range(0, 9),$bn_digits, $input); 
+	return $output = str_replace(range(0, 9),$bn_digits, $input); 
 }
 
 
