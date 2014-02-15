@@ -22,18 +22,18 @@ Live Preview: http://kentothemes.com/demo/kento-pvc/hello-world/
 
 Plugin Features
 
-* Display Post View Counter to your Lanuage. 
+* Display Post View Counter to your Language.
 * Top 10 City List by visitors.(New)
 * Top 10 Country list by visitors.(New)
-* Top 10 refere site list.
-* Display via shortcodes only today's coount or total count or both(New)
+* Top 10 reefer site list.
+* Display via shortcodes only today's count or total count or both(New)
 * refer site list where visitors come from(new).
 * Filter post type to trace count(new).
 * hide stats on content but still can trace view count(new).
 * Total Post View Count.
 * Total Post View Count Daily.
 * Top Viewed Post List on Admin.
-* Top Viewed By Date on Admin. 
+* Top Viewed By Date on Admin.
 * Recent Viewed by City on Admin.
 * Recent Viewed Post by City with real time and date.
 
