@@ -54,7 +54,7 @@ Before use shotcodes you need to <strong>"Hide Count on Post"</strong> checked a
 
 And use these shortcode as your need<br />
 
-<strong>Display whitout customize</strong><br />
+<strong>Display whithout customize</strong><br />
 `[kpvc_single]` <br />
 `<?php echo do_shortcode("[kpvc_single]"); ?>` Anywhere on single.php or custom post type single.php
 Also same way you can php code for bellow shortcodes<br />
@@ -74,7 +74,7 @@ Go "Kento Post View Counter Settings" page and add text for "Text For Today View
 <strong>How to use shortcodes in loop or excerpt mode ?</strong><br />
 To display views count manually via shortcodes in loop or excerpt mode you can use shortcode bellow<br />
 
-N.B. We have removed custom text adding feature via shortcode you can do same this by saveing custom text via "Kento Post View Counter Settings" page
+N.B. We have removed custom text adding feature via shortcode you can do same this by saving custom text via "Kento Post View Counter Settings" page
 
 <strong>Display whitout customize</strong><br />
 `<?php do_shortcode('[kpvc_loop post_id='.get_the_ID().']'); ?>`
@@ -88,9 +88,9 @@ same way you can hide total count by adding today="no"<br />
 
 <br />
 <strong>Display post view counter number to your language</strong><br />
-You cand display post view counter to your language, please go "Kento Post View Counter Settings" page and <strong>"Numbers Language"</strong> box fill numbers as following 0,1,2,3,4,5,6,7,8,9
+You can display post view counter to your language, please go "Kento Post View Counter Settings" page and <strong>"Numbers Language"</strong> box fill numbers as following 0,1,2,3,4,5,6,7,8,9
 
-Like for Bangla: ০,১,২,৩,৪,৫,৬,৭,৮,৯
+Like for Bangle: ০,১,২,৩,৪,৫,৬,৭,৮,৯
 or for Arabic/Persian: ۰,۱,۲,۳,۴,۵,۶,۷,۸,۹
 
 ** Please do not change the numbers orders otherwise it will wrong result for post view counter. 
@@ -102,7 +102,7 @@ or for Arabic/Persian: ۰,۱,۲,۳,۴,۵,۶,۷,۸,۹
 3. Admin - Recent Viewed by City and Recent Viewed Post by City with time.
 4. Settings page.
 5. Top 10 City And Country List.
-6. Top 10 Referer site list.
+6. Top 10 Referrer site list.
 
 
 
@@ -112,7 +112,7 @@ or for Arabic/Persian: ۰,۱,۲,۳,۴,۵,۶,۷,۸,۹
 * Added Top 10 City on Stats Page.
 * Custom text for total and today view count via setting page.
 * Removed custom text via shortcodes.
-* Display Post View Count to your Lanuage. 
+* Display Post View Count to your Language. 
 
 = 1.8 =
 * Added Top 10 Country on Stats Page.
