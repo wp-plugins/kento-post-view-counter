@@ -261,7 +261,7 @@ if you need more help please feel free to join our forum and ask any question<br
 
 
 
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kentothemes.com/items/plugins/kento-post-view-counter/">Tweet</a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kentothemes.com/items/plugins/kento-post-view-counter/" data-text="Kento Post View Counter">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </td>
 
