@@ -23,11 +23,11 @@ http://kentothemes.com/items/plugins/kento-post-view-counter/
 
 Plugin Features
 
-* Reefer site hit count(New).
+* Referrer site hit count(New).
 * Display Post View Counter to your Language(New).
 * Top 10 City List by visitors.(New)
 * Top 10 Country list by visitors.(New)
-* Top 10 reefer site list.
+* Top 10 Referrer site list.
 * Display via shortcodes only today's count or total count or both(New)
 * refer site list where visitors come from(new).
 * Filter post type to trace count(new).
@@ -111,8 +111,8 @@ or for Arabic/Persian: ۰,۱,۲,۳,۴,۵,۶,۷,۸,۹
 == Changelog ==
 
 = 2.0 =
-* Reefer site hit count.
-* Top 10 Reefer site list by Date.
+* Referrer site hit count.
+* Top 10 Referrer site list by Date.
 * Problem fix rank count start from 0 to 1.
 
 = 1.9 =
