@@ -3,7 +3,7 @@
 Plugin Name: Kento Post View Counter
 Plugin URI: http://kentothemes.com
 Description: Post or page view counter By City or Country or Date
-Version: 1.9
+Version: 2.0
 Author: KentoThemes
 Author URI: http://kentothemes.com
 License: GPLv2 or later
