@@ -3,12 +3,16 @@
 Plugin Name: Kento Post View Counter
 Plugin URI: http://kentothemes.com
 Description: Post or page view counter By City or Country or Date
-Version: 2.6
+Version: 2.7
 Author: KentoThemes
 Author URI: http://kentothemes.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+
+
+require_once( plugin_dir_path( __FILE__ ) . 'includes/geoplugin.class.php');
+
 define('KENTO_PVC_PLUGIN_PATH', WP_PLUGIN_URL . '/' . plugin_basename( dirname(__FILE__) ) . '/' );
 function kento_pvc_latest_jquery() {
 	wp_enqueue_script('jquery');
@@ -542,6 +546,11 @@ if(is_singular(explode(',',$type))){
 		}
 
 $ip = $_SERVER['REMOTE_ADDR'];
+
+
+/*
+
+
 $content = file_get_contents("http://www.geoplugin.net/xml.gp?ip=".$ip);
 preg_match('/<geoplugin_city>(.*)/i', $content, $matches);
 $city = !empty($matches[1]) ? $matches[1] : 0;
@@ -555,6 +564,9 @@ else
 	{
 	$city = $city;
 	}
+	
+	
+	
 preg_match('/<geoplugin_countryName>(.*)/i', $content, $matches);
 $country= !empty($matches[1]) ? $matches[1] : 0;
 $country = substr($country,0,-24);
@@ -563,6 +575,36 @@ if($country == ""){
 	$country = "none";}
 else {
 	$country = $country;
+	}
+	
+
+
+
+*/
+	
+	
+	
+	$geoplugin = new geoPlugin();
+	$geoplugin->locate();
+	$city = $geoplugin->city;
+	$country = $geoplugin->countryName;
+	
+	
+	
+	if($country == ""){
+	$country = "none";}
+	else {
+		$country = $country;
+		}
+	
+	
+	if($city == "")
+	{
+	$city = "none";
+	}
+	else
+	{
+	$city = $city;
 	}
 	
 	
