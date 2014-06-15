@@ -288,7 +288,12 @@ if you need more help please feel free to join our forum and ask any question<br
 
     </div> <!--kento-pvc-feedbck-box -->   
         
+        <div class="kento-pvc-promotion">
+        <h3>Get Timeline plugin for your website</h3>
+        <a href="http://kentothemes.com/items/social/timeline-pro-responsive-timeline-for-wordpress/"><img width="100%" src="<?php echo KENTO_PVC_PLUGIN_PATH."css/timelin.png"; ?>"  /></a>
         
+        
+        </div>
         
    </div> <!--kento-pvc-feedbck --> 
 <!-- /////////////////////////////////////////////////////////////////////// -->
