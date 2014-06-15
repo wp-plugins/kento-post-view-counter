@@ -8,7 +8,7 @@
     <div id="kento-pvc-feedbck-box">
     We are continuously update this plugin to get more feature, We are waiting to see your reviews and feedback at wordpress.org <a href="http://wordpress.org/plugins/kento-post-view-counter/" >Kento Post View Counter</a><br /><br />
 if you need more help please feel free to join our forum and ask any question<br />
-<a href="http://kentothemes.com/support/" >KentoThemes.com Questions & Answers</a><br /><br />
+<a href="http://kentothemes.com/questions-answers/" >KentoThemes.com Questions & Answers</a><br /><br />
 <strong>Please Share With your Friends</strong><br /><br />
 <table>
 <tr>
