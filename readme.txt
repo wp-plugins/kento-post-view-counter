@@ -1,5 +1,5 @@
 === Kento Post View Counter ===
-Contributors: hasanrang05
+Contributors: kentothemes
 Donate link: 
 Tags:  Kento Post View Counter, post view by city, post view by country, page view counter, view counter, Post View Counter
 Requires at least: 3.7
