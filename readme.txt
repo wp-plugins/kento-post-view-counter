@@ -10,6 +10,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Post View Counter by City or Country or by Date.
 
+Try other sharing tools at: http://sumome.com/
+
 == Description ==
 
 Real post view counter for wordpress post, page or custome post type
