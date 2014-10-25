@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Post View Counter by City or Country or by Date.
 
-Try other sharing tools at: http://sumome.com/
+
 
 == Description ==
 
@@ -148,6 +148,9 @@ height >> height for map area(use px or %).<br />
 7. Top 20 City And Country By Map.
 
 == Changelog ==
+= 2.8 =
+* fixed bug.
+
 
 = 2.7 =
 * fixed bug.
