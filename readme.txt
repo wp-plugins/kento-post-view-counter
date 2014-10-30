@@ -8,11 +8,14 @@ Stable tag: 2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Post View Counter by City or Country or by Date.
+Post View Counter by City or Country or by Date. Try other sharing tools at: https://sumome.com
 
 
 
 == Description ==
+Get even more sharing tools at <a href="http://www.sumome.com/?src=kss">SumoMe.com</a>
+
+
 
 Real post view counter for wordpress post, page or custome post type
 
@@ -61,7 +64,7 @@ http://kentothemes.com/items/plugins/kento-wordpress-analytics/
 
 
 
-
+Get even more sharing tools at <a href="http://www.sumome.com/?src=kss">SumoMe.com</a>
 
 
 
