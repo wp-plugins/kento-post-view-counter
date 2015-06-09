@@ -3,7 +3,7 @@ Contributors: kentothemes
 Donate link: 
 Tags:  Kento Post View Counter, post view by city, post view by country, page view counter, view counter, Post View Counter
 Requires at least: 3.7
-Tested up to: 3.8.1
+Tested up to: 4.2.2
 Stable tag: 2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
